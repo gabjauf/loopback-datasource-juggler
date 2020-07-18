@@ -906,7 +906,8 @@ describe('basic-querying', function() {
       it('should support multiple where filters on one property', function(done) {
         User.find({where: {'name': {gt: 'Paul', lt: 'Pete'}}}, function(err, users) {
           if (err) return done(err);
-          users.length.should.be.equal(2);
+          users.length.should.be.equal(1);
+          users[0].name.should.be.eql('Paul');
           done();
         });
       });
