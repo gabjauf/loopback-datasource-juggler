@@ -903,6 +903,14 @@ describe('basic-querying', function() {
         });
       });
 
+      it('should support multiple where filters on one property', function(done) {
+        User.find({where: {'name': {gt: 'Paul', lt: 'Pete'}}}, function(err, users) {
+          if (err) return done(err);
+          users.length.should.be.equal(2);
+          done();
+        });
+      });
+
       bdd.itIf(connectorCapabilities.adhocSort,
         'should support nested property for order in query',
         function(done) {
